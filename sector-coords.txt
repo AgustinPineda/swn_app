@@ -1,0 +1,219 @@
+Name: Arus
+xCoord: 8
+yCoord: 1
+worldtags: seismic instability, hostile space
+atmosphere: breathable
+temperature: temperate
+biosphere: human-miscible
+population: >100M
+techlevel: 2
+
+Name: C01NS (Explorer: Catinius; World 1; No biosphere; Success)
+xCoord: 8
+yCoord: 2
+worldtags: mandarinate, freak geology
+atmosphere: breathable
+temperature: temperate
+biosphere: no native biosphere
+population: <1M
+techlevel: 4
+
+Name: Mobos
+xCoord: 8
+yCoord: 3
+worldtags: beastmasters, local speciality
+atmosphere: thick
+temperature: variable cold
+biosphere: engineered
+population: <1M
+techlevel: 4+
+
+Name: Dania
+xCoord: 8
+yCoord: 4
+worldtags: psionics worship, hostile space
+atmosphere: thick
+temperature: temperate
+biosphere: human-miscible
+population: >100M
+techlevel: 4
+
+Name: Solia
+xCoord: 6
+yCoord: 3
+worldtags: seagoing cities, gold rush
+atmosphere: breathable
+temperature: cold
+biosphere: engineered
+population: >100M
+techlevel: 3
+
+Name: C02CF
+xCoord: 6
+yCoord: 4
+worldtags: feral world, cheap life
+atmosphere: thick
+temperature: temperate
+biosphere: human-miscible
+population: >1M
+techlevel: 4
+
+Name: C04MS
+xCoord: 6
+yCoord: 5
+worldtags: cold war, night world
+atmosphere: breathable
+temperature: warm
+biosphere: microbial
+population: >1M
+techlevel: 4
+
+Name: Sulara
+xCoord: 7
+yCoord: 6
+worldtags: ritual combat, rigid culture
+atmosphere: breathable
+temperature: variable warm
+biosphere: human-miscible
+population: >100M
+techlevel: 3
+
+Name: Kunus
+xCoord: 6
+yCoord: 6
+worldtags: friendly foe, restrictive laws
+atmosphere: breathable
+temperature: temperate
+biosphere: no native biosphere
+population: >1M
+techlevel: 4
+
+Name: Meccov
+xCoord: 7
+yCoord: 7
+worldtags: heavy mining, cheap life
+atmosphere: breathable
+temperature: variable warm
+biosphere: human-miscible
+population: <1M
+techlevel: 3
+
+Name: Ithaca
+xCoord: 8
+yCoord: 7
+worldtags: tyranny, police state
+atmosphere: breathable
+temperature: variable warm
+biosphere: human-miscible
+population: >1M
+techlevel: 4
+
+Name: Atur
+xCoord: 5
+yCoord: 7
+worldtags: battleground, exchange consulate
+atmosphere: breathable
+temperature: temperate
+biosphere: immiscible
+population: >1B
+techlevel: 4+
+
+Name: Etis
+xCoord: 4
+yCoord: 7
+worldtags: flying cities, friendly foe
+atmosphere: breathable
+temperature: temperate
+biosphere: human-miscible
+population: <1M
+techlevel: 4+
+
+Name: Vocurn
+xCoord: 5
+yCoord: 8
+worldtags: prison planet, cyborgs
+atmosphere: thin
+temperature: variable warm
+biosphere: human-miscible
+population: >1M
+techlevel: 4
+
+Name: Erus
+xCoord: 6
+yCoord: 8
+worldtags: cyborgs, altered humanity
+atmosphere: breathable
+temperature: temperate
+biosphere: no native biosphere
+population: >1M
+techlevel: 4
+
+Name: Sebos
+xCoord: 5
+yCoord: 10
+worldtags: robots, seismic instability
+atmosphere: breathable
+temperature: temperate
+biosphere: human-miscible
+population: >100M
+techlevel: 3
+
+Name: Iulara
+xCoord: 2
+yCoord: 10
+worldtags: misandry/misogyny, mandate base
+atmosphere: breathable
+temperature: temperate
+biosphere: human-miscible
+population: <1M
+techlevel: 4+
+
+Name: Brutis
+xCoord: 3
+yCoord: 10
+worldtags: freak weather, restrictive laws
+atmosphere: breathable
+temperature: variable cold
+biosphere: human-miscible
+population: <1M
+techlevel: 2
+
+Name: Ionope
+xCoord: 4
+yCoord: 1
+worldtags: outpost world, freak weather
+atmosphere: inert
+temperature: variable warm
+biosphere: immiscible
+population: >100M
+techlevel: 4
+
+Name: Zanus
+xCoord: 2
+yCoord: 3
+worldtags: abandoned colony, pretech cultists
+atmosphere: breathable
+temperature: temperate
+biosphere: no native biosphere
+population: >100M
+techlevel: 4+
+
+Name: Sietis
+xCoord: 1
+yCoord: 6
+worldtags: megacorps, cold war
+atmosphere: breathable
+temperature: temperate
+biosphere: human-miscible
+population: >1M
+techlevel: 4+
+
+Name: Lubos
+xCoord: 2
+yCoord: 6
+worldtags: psionic academy, former warriors
+atmosphere: breathable
+temperature: temperate
+biosphere: human-miscible
+population: >1M
+techlevel: 4+

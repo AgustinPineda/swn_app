@@ -1,0 +1,33 @@
+# Fort Collins
+?unread
+&location
++location: Colorado
++elevation: 5000 ft
+Fort Collins is a college town in northern Colorado and is the home of Colorado State University. It's a fairly populous city and has many bike trails and things to do around the area, including hiking and plentiful bars.
+
+# Thomas
+?unread
+&person
++friend
+--health: 12
+--max health: 17
++role: fighter
+Having grown up in a small town, Thomas is very good at jury rigging machines together in a pinch.
+
+# Geiger
+?unread
+&person
++neutral
+--health: 4
+--max health: 4
++role: secretary of state
+Geiger tends to keep his thoughts to himself, and seems unwilling to back any organization or cause. He claims his policies are rooted only in logic.
+
+# Marius
+?unread
+&person
++enemy
+--health: 15
+--max health: 15
++role: leader of the Nyx crusade
+With humble roots as the son of a schoolteacher, Marius caused quite a stir when he went public as the leader of the Nyx crusade. He has taken the organization from a no-name religious group that preached good works to a mighty force that will impose its morality and social structure on whoever stumbles to their sword.
