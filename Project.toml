@@ -1,8 +1,9 @@
 name = "swn_app"
-version = "0.1.0"
+version = "0.1.1"
 
 [deps]
 Crayons = "a8cc5b0e-0ffa-5ad4-8c14-923d3ee1735f"
 FileIO = "5789e2e9-d7fb-5bc7-8068-2c6fae9b9549"
+HTTP = "cd3eb016-35fb-5094-929b-558a96fad6f3"
 PlotThemes = "ccf2f8ad-2431-5c83-bf29-c5338b663b6a"
 UnicodePlots = "b8865327-cd53-5732-bb35-84acbb429228"
