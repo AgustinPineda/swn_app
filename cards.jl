@@ -1,12 +1,13 @@
 module Cards
 
-@enum CardType person location faction object
+@enum CardType person location faction object rule
 #TODO: Potentially try to handle KeyError for CardTypes::Dict
 CardTypes = Dict(
                  "person" => person,
                  "location" => location,
                  "faction" => faction,
-                 "object" => object
+                 "object" => object,
+                 "rule" => rule
                 )
 
 mutable struct Stat
@@ -25,6 +26,7 @@ end
 
 function parsecard(str::AbstractString)::Card
     #TODO: There may be a better way to do this (i.e. using a local variable)
+    # Also I may want to initialize these values, or handle if they're not present
     data = split(str, '\n')
     local cardname
     local cardread
@@ -47,7 +49,7 @@ function parsecard(str::AbstractString)::Card
             push!(cardstats, Stat(tmp[1], parse(Int64, tmp[2])))
             continue
         end
-        cardsummary *= line*'\n'
+        cardsummary *= line*'\n' #not sure if I want the newline at the end
     end
     return Card(
                 cardname,
@@ -59,9 +61,8 @@ function parsecard(str::AbstractString)::Card
                )
 end
 
-blankchars = [' ', '\t']
-
 function isblank(str::AbstractString)::Bool
+    blankchars = [' ', '\t']
     if str == "" return true end
     for c in str
         if !(c in blankchars); return false; end
@@ -81,7 +82,7 @@ function read_cardfile(filename::AbstractString)
             push!(cards, cardstring)
             cardstring = ""
         else
-            cardstring *= line * '\n'
+            cardstring *= line * '\n' #TODO: Don't know if I need this last \n
             push!(cards, cardstring)
         end
     end
@@ -111,14 +112,13 @@ function printa(str::AbstractString, sleep_time::Float64=0.05) #print animate
         flush(stdout)
         sleep(sleep_time)
     end
-    println()
+    println() #I may want to remove this line from this function
 end
 
 function printcard(card::Card)
     local delay = 0.05
     if card.read == true; delay = 0.005; end
     printa(card.name, delay)
-    #printa(string(card.type), delay)
     for t in card.tags
         printa(t, delay)
     end
@@ -136,7 +136,7 @@ export printa
 export printcard
 export fitstring
 #TODO: Make layout of printing better, including colors from Crayons
-#TODO: updatecard(::Card)
+#TODO: updatecard(::Card) for things like damage
 #TODO: writecard(::Card) or card_to_str(::Card) and writecards(::Array{Card})
 
 end

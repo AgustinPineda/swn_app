@@ -1,7 +1,8 @@
 include("cards.jl")
 using .Cards
 
-cards = map(parsecard, read_cardfile("info.md"))
+#TODO: change this to fetch data from repository
+cards = map(parsecard, read_cardfile("info.txt"))
 names = getfield.(cards, :name)
 C = Dict(zip(lowercase.(names), cards))
 
