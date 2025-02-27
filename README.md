@@ -36,4 +36,6 @@ The sector-map.jl script is for generating a map of the sector. As of now the re
 
 ## Documentation
 
-Currently the app only supports one command, `info` which provides all the information on a topic in info.txt. Currently the only three topics in this repo are test topics for “Fort Collins”, “Thomas”, “Geiger”, and “Marius”. `info Marius` for example will print out all the information on Marius.
+Currently the app only supports two commands, `info` which provides all the information on a topic in info.txt. Currently the only three topics in this repo are test topics for “Fort Collins”, “Thomas”, “Geiger”, and “Marius”. `info Marius` for example will print out all the information on Marius.
+
+The `exit` command closes the app.
