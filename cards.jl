@@ -43,9 +43,9 @@ function parsecard(str::AbstractString)::Card
             end
         end
         if line[1] == '&'; cardtype = CardTypes[line[2:end]]; continue end
-        if line[1] == '+'; push!(cardtags, line[2:end]); continue end
-        if line[1:2] == "--"
-            tmp = split(line[3:end], ": ")
+        if line[1:2] == "--"; push!(cardtags, line[3:end]); continue end
+        if line[1] == '+'
+            tmp = split(line[2:end], ": ")
             push!(cardstats, Stat(tmp[1], parse(Int64, tmp[2])))
             continue
         end
@@ -117,7 +117,7 @@ end
 
 function printcard(card::Card)
     local delay = 0.05
-    if card.read == true; delay = 0.005; end
+    if card.read == true; delay = 0.01; end
     printa(card.name, delay)
     for t in card.tags
         printa(t, delay)

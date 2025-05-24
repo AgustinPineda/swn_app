@@ -21,7 +21,7 @@ function main()
 
     while true
 
-        print("❯❯ ")
+        print("❯ ")
         input = readline()
         if input=="exit"
             break
