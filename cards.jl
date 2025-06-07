@@ -36,40 +36,36 @@ function parsecard(str::AbstractString)::Card
     cardsummary = ""
     for line in data
 
-        if length(line) < 2
-            continue
+        if length(line) <= 1
 
         elseif line[1:2] == "# "
             cardname = line[3:end]
-            continue
 
         elseif line[1] == '?'
             if occursin("unread", line)
                 cardread = false
-                continue
             else
                 cardread = true
-                continue
             end
 
         elseif line[1] == '&'
             cardtype = CardTypes[line[2:end]]
-            continue
 
         elseif line[1:2] == "--"
             push!(cardtags, line[3:end])
-            continue
 
         elseif line[1] == '+'
             tmp = split(line[2:end], ": ")
             push!(cardstats, Stat(tmp[1], parse(Int64, tmp[2])))
-            continue
 
         elseif isempty(cardsummary)
             cardsummary *= line
+
         else
             cardsummary = join([cardsummary, line], '\n')
+
         end
+
     end
     return Card(
                 cardname,
@@ -97,17 +93,39 @@ function read_cardfile(filename::AbstractString)
     cardstring = ""
     for line in lines
         if !isblank(line) && line!=last(lines)
-            cardstring *= line
+            cardstring *= line * '\n'
         elseif isblank(line)
             push!(cards, cardstring)
             cardstring = ""
         else
-            cardstring = join([cardstring, line], '\n')
+            cardstring *= line
             push!(cards, cardstring)
         end
     end
     close(file)
     return cards
+end
+
+function writecards(cards::Array{Card}, filename::AbstractString)
+    local content::String
+    for card in cards
+        string = join([
+                       "# " * card.name,
+                       "?" * string(card.read),
+                       "&" * string(card.type),
+                       "--" .* card.tags...
+                      ])
+        for stat in card.stats
+            string = join([string, "+" * stat.name * ": " * stat.value])
+        end
+        string = join([string, card.summary])
+        if !isempty(content)
+            content = content * "\n\n" * string
+        else
+            content = string
+        end
+    end
+    write(filename, content)
 end
 
 function fitstring(str::AbstractString)
@@ -152,11 +170,12 @@ end
 export Card
 export parsecard
 export read_cardfile
+export writecards
+export fitstring
 export printa
 export printcard
-export fitstring
 #TODO: Make layout of printing better, including colors from Crayons
 #TODO: updatecard(::Card) for things like damage
-#TODO: writecard(::Card) or card_to_str(::Card) and writecards(::Array{Card})
+#TODO: writecard(::Card) or card_to_str(::Card) (do i really want this??)
 
 end

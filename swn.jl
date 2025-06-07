@@ -2,6 +2,7 @@ include("cards.jl")
 using .Cards
 
 #TODO: change this to fetch data from repository
+# cards = parsecard.(read_cardfile("cards.dat")) # array of Cards
 cards = map(parsecard, read_cardfile("cards.dat"))
 names = getfield.(cards, :name)
 C = Dict(zip(lowercase.(names), cards))
