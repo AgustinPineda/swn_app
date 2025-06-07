@@ -35,21 +35,41 @@ function parsecard(str::AbstractString)::Card
     cardstats = Stat[]
     cardsummary = ""
     for line in data
-        if length(line) < 2; continue end
-        if line[1:2] == "# "; cardname = line[3:end]; continue end
-        if line[1] == '?'
-            if occursin("unread", line); cardread = false; continue
-            else cardread = true; continue
+
+        if length(line) < 2
+            continue
+
+        elseif line[1:2] == "# "
+            cardname = line[3:end]
+            continue
+
+        elseif line[1] == '?'
+            if occursin("unread", line)
+                cardread = false
+                continue
+            else
+                cardread = true
+                continue
             end
-        end
-        if line[1] == '&'; cardtype = CardTypes[line[2:end]]; continue end
-        if line[1:2] == "--"; push!(cardtags, line[3:end]); continue end
-        if line[1] == '+'
+
+        elseif line[1] == '&'
+            cardtype = CardTypes[line[2:end]]
+            continue
+
+        elseif line[1:2] == "--"
+            push!(cardtags, line[3:end])
+            continue
+
+        elseif line[1] == '+'
             tmp = split(line[2:end], ": ")
             push!(cardstats, Stat(tmp[1], parse(Int64, tmp[2])))
             continue
+
+        elseif isempty(cardsummary)
+            cardsummary *= line
+        else
+            cardsummary = join([cardsummary, line], '\n')
         end
-        cardsummary *= line*'\n' #not sure if I want the newline at the end
     end
     return Card(
                 cardname,
@@ -77,12 +97,12 @@ function read_cardfile(filename::AbstractString)
     cardstring = ""
     for line in lines
         if !isblank(line) && line!=last(lines)
-            cardstring *= line * '\n'
+            cardstring *= line
         elseif isblank(line)
             push!(cards, cardstring)
             cardstring = ""
         else
-            cardstring *= line * '\n' #TODO: Don't know if I need this last \n
+            cardstring = join([cardstring, line], '\n')
             push!(cards, cardstring)
         end
     end

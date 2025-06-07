@@ -2,7 +2,7 @@ include("cards.jl")
 using .Cards
 
 #TODO: change this to fetch data from repository
-cards = map(parsecard, read_cardfile("info.txt"))
+cards = map(parsecard, read_cardfile("cards.dat"))
 names = getfield.(cards, :name)
 C = Dict(zip(lowercase.(names), cards))
 
@@ -27,28 +27,28 @@ function main()
             break
         end
 
-        cmd = split(input, ' ')
+        cmd, args... = split(input, ' ')
         println()
         #printa("Jarvis: I can see you said \""*input*"\"", 0.05)
 
-        if cmd[1]=="info"
-            if length(cmd) < 2
+        if cmd=="info"
+            if length(args) == 0
                 printa("""
                         Pixel: I can give you information on lots of different things!
                         """)
                 continue
             end
-            info(join(cmd[2:end], ' '))
+            info(join(args, ' '))
             continue
         end
 
-        if cmd[1]=="write"
+        if cmd=="write"
         end
 
-        if cmd[1]=="stats"
+        if cmd=="stats"
         end
 
-        if cmd[1]=="status"
+        if cmd=="status"
         end
 
         println()
