@@ -16,6 +16,26 @@ function info(topic::AbstractString)
     end
 end
 
+function dmg!(damage::Int64, person::AbstractString)
+    try
+        person = C[lowercase(person)]
+    catch
+        printa("No entry found for " * person * '\n')
+    end
+    if "health" in getfield.(person.stats, :name)
+        i = findfirst(x -> x=="health", getfield.(person.stats, :name))
+        person.stats[i].value -= damage
+    else
+        push!(person.stats, Stat("health", -damage))
+    end
+end
+
+function dmg!(damage::Int64, people::Vector{String})
+    for p in people
+        dmg!(damage, p)
+    end
+end
+
 function main()
 
     print("\033c")
@@ -28,9 +48,8 @@ function main()
             break
         end
 
-        cmd, args... = split(input, ' ')
+        cmd, args... = string.(split(input, ' '))
         println()
-        #printa("Jarvis: I can see you said \""*input*"\"", 0.05)
 
         if cmd=="info"
             if length(args) == 0
@@ -41,6 +60,21 @@ function main()
             end
             info(join(args, ' '))
             continue
+        end
+
+        if cmd=="dmg"
+            try
+                if length(args) < 2 error() end
+                damage = parse(Int64, args[1])
+                dmg!(damage, args[2:end])
+                println(string(damage) * " damage done to " * join(args[2:end], ", "))
+            catch
+                printa("""
+                       Error. Cmd format is:
+                        dmg <damage> <person1> <person2> ...
+                       """)
+                continue
+            end
         end
 
         if cmd=="write"

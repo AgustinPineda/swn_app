@@ -25,8 +25,7 @@ mutable struct Card
 end
 
 function parsecard(str::AbstractString)::Card
-    #TODO: There may be a better way to do this (i.e. using a local variable)
-    # Also I may want to initialize these values, or handle if they're not present
+    # I may want to initialize these values, or handle if they're not present
     data = split(str, '\n')
     local cardname
     local cardread
@@ -107,20 +106,22 @@ function read_cardfile(filename::AbstractString)
 end
 
 function writecards(cards::Array{Card}, filename::AbstractString)
-    local content::String
+    local content
     for card in cards
         string = join([
                        "# " * card.name,
                        "?" * string(card.read),
                        "&" * string(card.type),
                        "--" .* card.tags...
-                      ])
+                      ],
+                      '\n'
+                     )
         for stat in card.stats
-            string = join([string, "+" * stat.name * ": " * stat.value])
+            string = join([string, "+" * stat.name * ": " * stat.value], 'n')
         end
-        string = join([string, card.summary])
+        string = join([string, card.summary], '\n')
         if !isempty(content)
-            content = content * "\n\n" * string
+            content = join([content, string], "\n\n")
         else
             content = string
         end
@@ -129,18 +130,21 @@ function writecards(cards::Array{Card}, filename::AbstractString)
 end
 
 function fitstring(str::AbstractString)
-    local width = displaysize(stdout)[2]
-    local newlines = [0]
-    local i = length(str)
-    while length(str)-last(newlines) > width
-        if i-last(newlines)<width && str[i]==' '
-            str = str[1:i-1]*'\n'*str[i+1:end]
-            push!(newlines, i)
-            i = length(str)
+    str = split(str, '\n')
+    for s in str
+        local width = displaysize(stdout)[2]
+        local newlines = [0]
+        local i = length(s)
+        while length(s)-last(newlines) > width
+            if i-last(newlines)<width && s[i]==' '
+                s = s[1:i-1]*'\n'*s[i+1:end]
+                push!(newlines, i)
+                i = length(s)
+            end
+            i = i-1
         end
-        i = i-1
     end
-    return str
+    return join(str, '\n')
 end
 
 function printa(str::AbstractString, sleep_time::Float64=0.05) #print animate
@@ -150,7 +154,6 @@ function printa(str::AbstractString, sleep_time::Float64=0.05) #print animate
         flush(stdout)
         sleep(sleep_time)
     end
-    println() #I may want to remove this line from this function
 end
 
 function printcard(card::Card)
