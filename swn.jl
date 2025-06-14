@@ -1,3 +1,4 @@
+using ArgCheck
 include("cards.jl")
 using .Cards
 
@@ -22,12 +23,17 @@ function dmg!(damage::Int64, person::AbstractString)
     catch
         printa("No entry found for " * person * '\n')
     end
+
+    @argcheck person.type == person
+
     if "health" in getfield.(person.stats, :name)
         i = findfirst(x -> x=="health", getfield.(person.stats, :name))
         person.stats[i].value -= damage
     else
         push!(person.stats, Stat("health", -damage))
     end
+
+    printcard(person)
 end
 
 function dmg!(damage::Int64, people::Vector{String})
