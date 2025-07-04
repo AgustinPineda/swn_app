@@ -66,6 +66,7 @@ p = plot(xx,yy, bgimg,
          size=(600,760),
          ticks=false,
          legend=false,
+         dpi=400
         )
 plot!(x,y,lt=:scatter,marker=:star5)
 for i in eachindex(names)
@@ -75,3 +76,4 @@ for i in 1:8, j in 1:10
     plot!(drawhex(Hex(i,j)...)..., color=:white)
 end
 display(p)
+savefig("sector-map.png")
